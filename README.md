@@ -69,7 +69,9 @@ aluguel-veiculos/
 
 O projeto **não utiliza um template Bootstrap pronto copiado integralmente**. A base foi o sistema de grid e utilitários do Bootstrap 5, sobre o qual foi construída uma identidade visual própria:
 
-- **Paleta:** Navy `#0D1B2A` + Azul corporativo `#1B4F8A` + Laranja acento `#E8500A`
+- **Paleta primária:** Vermelho `#D32F2F` · Vermelho escuro `#9A0007` · Vermelho claro `#FF6659`
+- **Status:** Sucesso `#2E7D32` · Aviso `#F57C00` · Erro `#C62828`
+- **Neutras:** Fundo `#F8F9FA` · Cards `#FFFFFF` · Texto `#212121` · Labels `#666666` · Bordas `#E0E0E0`
 - **Tipografia:** Barlow Condensed (display/títulos) + Inter (corpo de texto)
 - **Sidebar fixa** com navegação por seções e indicador de página ativa
 - **Cards de estatística** com ícones coloridos por categoria
