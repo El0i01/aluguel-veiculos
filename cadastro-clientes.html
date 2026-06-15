@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UniCar — Cadastro de Clientes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- Navbar mobile -->
+  <nav class="navbar navbar-dark d-lg-none px-3 py-2" style="background: var(--primary-dark);">
+    <a class="navbar-brand p-0" href="index.html">
+      <img src="assets/img/logo.png" alt="UniCar" height="36" style="background:#fff; border-radius:6px; padding:2px 6px;" />
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+
+  <div class="d-flex">
+
+    <!-- Sidebar desktop -->
+    <aside class="sidebar-desktop d-none d-lg-flex flex-column">
+      <div class="sidebar-brand-box">
+        <img src="assets/img/logo.png" alt="UniCar" class="img-fluid" style="max-height:52px;" />
+      </div>
+      <div class="sidebar-body flex-grow-1">
+        <p class="sidebar-label">Principal</p>
+        <a href="index.html" class="sidebar-link"><i class="bi bi-speedometer2"></i> <span>Dashboard</span></a>
+        <p class="sidebar-label mt-3">Clientes</p>
+        <a href="cadastro-clientes.html" class="sidebar-link active"><i class="bi bi-person-plus"></i> <span>Novo Cliente</span></a>
+        <a href="listagem-clientes.html" class="sidebar-link"><i class="bi bi-people"></i> <span>Listar Clientes</span></a>
+        <p class="sidebar-label mt-3">Veículos</p>
+        <a href="cadastro-veiculos.html" class="sidebar-link"><i class="bi bi-plus-circle"></i> <span>Novo Veículo</span></a>
+        <a href="listagem-veiculos.html" class="sidebar-link"><i class="bi bi-car-front"></i> <span>Listar Veículos</span></a>
+      </div>
+    </aside>
+
+    <!-- Offcanvas mobile -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarOffcanvas" style="width:240px; background:var(--primary-dark);">
+      <div class="offcanvas-header border-bottom border-secondary pb-3" style="background:#fff;">
+        <img src="assets/img/logo.png" alt="UniCar" height="42" />
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+      </div>
+      <div class="offcanvas-body p-0">
+        <p class="sidebar-label mt-3">Principal</p>
+        <a href="index.html" class="sidebar-link"><i class="bi bi-speedometer2"></i> <span>Dashboard</span></a>
+        <p class="sidebar-label mt-3">Clientes</p>
+        <a href="cadastro-clientes.html" class="sidebar-link active"><i class="bi bi-person-plus"></i> <span>Novo Cliente</span></a>
+        <a href="listagem-clientes.html" class="sidebar-link"><i class="bi bi-people"></i> <span>Listar Clientes</span></a>
+        <p class="sidebar-label mt-3">Veículos</p>
+        <a href="cadastro-veiculos.html" class="sidebar-link"><i class="bi bi-plus-circle"></i> <span>Novo Veículo</span></a>
+        <a href="listagem-veiculos.html" class="sidebar-link"><i class="bi bi-car-front"></i> <span>Listar Veículos</span></a>
+      </div>
+    </div>
+
+    <!-- Conteúdo -->
+    <div class="main-wrapper flex-grow-1">
+
+      <header class="topbar d-none d-lg-flex align-items-center px-4">
+        <h1 class="topbar-title mb-0 me-auto">Cadastro de Clientes</h1>
+        <span class="text-secondary small"><i class="bi bi-person-circle me-1"></i>Admin</span>
+      </header>
+
+      <div class="container-fluid px-4 py-4">
+
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="mb-4">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none" style="color:var(--primary)">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="listagem-clientes.html" class="text-decoration-none" style="color:var(--primary)">Clientes</a></li>
+            <li class="breadcrumb-item active">Novo Cliente</li>
+          </ol>
+        </nav>
+
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white border-bottom py-3">
+            <h5 class="mb-0 fw-semibold"><i class="bi bi-person-plus me-2" style="color:var(--primary)"></i>Novo Cliente</h5>
+          </div>
+          <div class="card-body p-4">
+            <form id="formCliente" novalidate>
+
+              <!-- Dados pessoais -->
+              <h6 class="fw-semibold text-uppercase mb-3" style="color:var(--primary); font-size:.75rem; letter-spacing:1px;">
+                <i class="bi bi-person me-1"></i> Dados Pessoais
+              </h6>
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label class="form-label fw-medium">Nome completo <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="nome" placeholder="Ex: João da Silva" required />
+                  <div class="invalid-feedback">Informe o nome completo.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-medium">CPF <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00" maxlength="14" required />
+                  <div class="invalid-feedback">Informe um CPF válido.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-medium">E-mail <span class="text-danger">*</span></label>
+                  <input type="email" class="form-control" id="email" placeholder="joao@email.com" required />
+                  <div class="invalid-feedback">Informe um e-mail válido.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-medium">Telefone <span class="text-danger">*</span></label>
+                  <input type="tel" class="form-control" id="telefone" placeholder="(00) 90000-0000" maxlength="15" required />
+                  <div class="invalid-feedback">Informe o telefone.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-medium">Data de Nascimento</label>
+                  <input type="date" class="form-control" id="dataNascimento" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-medium">Nº CNH <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="cnh" placeholder="Ex: AB-1234567" required />
+                  <div class="invalid-feedback">Informe o número da CNH.</div>
+                </div>
+              </div>
+
+              <hr class="my-4" />
+
+              <!-- Endereço -->
+              <h6 class="fw-semibold text-uppercase mb-3" style="color:var(--primary); font-size:.75rem; letter-spacing:1px;">
+                <i class="bi bi-geo-alt me-1"></i> Endereço
+              </h6>
+              <div class="row g-3 mb-4">
+                <div class="col-md-3">
+                  <label class="form-label fw-medium">CEP</label>
+                  <input type="text" class="form-control" id="cep" placeholder="00000-000" maxlength="9" />
+                </div>
+                <div class="col-md-7">
+                  <label class="form-label fw-medium">Logradouro</label>
+                  <input type="text" class="form-control" id="endereco" placeholder="Rua, Avenida..." />
+                </div>
+                <div class="col-md-2">
+                  <label class="form-label fw-medium">Número</label>
+                  <input type="text" class="form-control" id="numero" placeholder="Nº" />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label fw-medium">Complemento</label>
+                  <input type="text" class="form-control" id="complemento" placeholder="Apto, Bloco..." />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label fw-medium">Cidade</label>
+                  <input type="text" class="form-control" id="cidade" placeholder="Sua cidade" />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label fw-medium">Estado</label>
+                  <select class="form-select" id="estado">
+                    <option value="">Selecione</option>
+                    <option>AC</option><option>AL</option><option>AM</option><option>AP</option>
+                    <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+                    <option>GO</option><option>MA</option><option>MG</option><option>MS</option>
+                    <option>MT</option><option>PA</option><option>PB</option><option>PE</option>
+                    <option>PI</option><option>PR</option><option>RJ</option><option>RN</option>
+                    <option>RO</option><option>RR</option><option>RS</option><option>SC</option>
+                    <option selected>SP</option><option>SE</option><option>TO</option>
+                  </select>
+                </div>
+              </div>
+
+              <hr class="my-4" />
+
+              <!-- Status -->
+              <h6 class="fw-semibold text-uppercase mb-3" style="color:var(--primary); font-size:.75rem; letter-spacing:1px;">
+                <i class="bi bi-sliders me-1"></i> Configurações
+              </h6>
+              <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                  <label class="form-label fw-medium">Status</label>
+                  <select class="form-select" id="status">
+                    <option value="ativo">Ativo</option>
+                    <option value="inativo">Inativo</option>
+                  </select>
+                </div>
+                <div class="col-md-8">
+                  <label class="form-label fw-medium">Observações</label>
+                  <textarea class="form-control" id="observacoes" rows="2" placeholder="Alguma observação sobre o cliente..."></textarea>
+                </div>
+              </div>
+
+              <!-- Botões -->
+              <div class="d-flex flex-wrap gap-2 pt-2">
+                <button type="submit" class="btn btn-danger px-4 fw-semibold">
+                  <i class="bi bi-check-lg me-1"></i> Salvar Cliente
+                </button>
+                <button type="reset" class="btn btn-outline-secondary px-4">
+                  <i class="bi bi-arrow-counterclockwise me-1"></i> Limpar
+                </button>
+                <a href="listagem-clientes.html" class="btn btn-outline-secondary px-4">
+                  <i class="bi bi-list-ul me-1"></i> Ver Listagem
+                </a>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <footer class="border-top text-center text-muted py-3 small">
+        &copy; 2026 UniCar — Programação para Web · UNISAPIENS
+      </footer>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Máscara CPF
+    document.getElementById('cpf').addEventListener('input', function () {
+      let v = this.value.replace(/\D/g, '');
+      v = v.replace(/(\d{3})(\d)/, '$1.$2');
+      v = v.replace(/(\d{3})(\d)/, '$1.$2');
+      v = v.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+      this.value = v;
+    });
+
+    // Máscara telefone
+    document.getElementById('telefone').addEventListener('input', function () {
+      let v = this.value.replace(/\D/g, '');
+      v = v.replace(/^(\d{2})(\d)/, '($1) $2');
+      v = v.replace(/(\d{5})(\d)/, '$1-$2');
+      this.value = v;
+    });
+
+    // Máscara CEP
+    document.getElementById('cep').addEventListener('input', function () {
+      let v = this.value.replace(/\D/g, '');
+      v = v.replace(/(\d{5})(\d)/, '$1-$2');
+      this.value = v;
+    });
+
+    // Validação Bootstrap
+    document.getElementById('formCliente').addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!this.checkValidity()) {
+        this.classList.add('was-validated');
+        return;
+      }
+      alert('Cliente cadastrado com sucesso!');
+      this.reset();
+      this.classList.remove('was-validated');
+    });
+  </script>
+
+</body>
+</html>
