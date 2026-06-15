@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UniCar — Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <img src="assets/img/logo.png" alt="UniCar" />
+    </div>
+
+    <nav class="sidebar-nav">
+      <p class="sidebar-label">Principal</p>
+      <a href="index.html" class="sidebar-link active">
+        <i class="bi bi-speedometer2"></i> Dashboard
+      </a>
+
+      <p class="sidebar-label">Clientes</p>
+      <a href="cadastro-clientes.html" class="sidebar-link">
+        <i class="bi bi-person-plus"></i> Novo Cliente
+      </a>
+      <a href="listagem-clientes.html" class="sidebar-link">
+        <i class="bi bi-people"></i> Listar Clientes
+      </a>
+
+      <p class="sidebar-label">Veículos</p>
+      <a href="cadastro-veiculos.html" class="sidebar-link">
+        <i class="bi bi-plus-circle"></i> Novo Veículo
+      </a>
+      <a href="listagem-veiculos.html" class="sidebar-link">
+        <i class="bi bi-car-front"></i> Listar Veículos
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Overlay mobile -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Conteúdo principal -->
+  <div class="main-content">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <button class="btn-toggle-sidebar" id="toggleSidebar">
+        <i class="bi bi-list"></i>
+      </button>
+      <h1 class="topbar-title">Dashboard</h1>
+      <span class="topbar-user"><i class="bi bi-person-circle"></i> Admin</span>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <h2 class="hero-title">Bem-vindo ao UniCar</h2>
+        <p class="hero-subtitle">Gerencie sua frota e clientes em um só lugar.</p>
+        <div class="hero-actions">
+          <a href="cadastro-clientes.html" class="btn btn-accent">
+            <i class="bi bi-person-plus-fill"></i> Novo Cliente
+          </a>
+          <a href="cadastro-veiculos.html" class="btn btn-outline-light">
+            <i class="bi bi-plus-circle-fill"></i> Novo Veículo
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards de estatística -->
+    <section class="container-fluid px-4 mt-4">
+      <div class="row g-3">
+        <div class="col-sm-6 col-xl-3">
+          <div class="stat-card">
+            <div class="stat-icon stat-icon--blue">
+              <i class="bi bi-people-fill"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="totalClientes">3</span>
+              <span class="stat-label">Clientes cadastrados</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="stat-card">
+            <div class="stat-icon stat-icon--orange">
+              <i class="bi bi-car-front-fill"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="totalVeiculos">3</span>
+              <span class="stat-label">Veículos na frota</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="stat-card">
+            <div class="stat-icon stat-icon--green">
+              <i class="bi bi-check-circle-fill"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="veiculosDisponiveis">2</span>
+              <span class="stat-label">Disponíveis para alugar</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="stat-card">
+            <div class="stat-icon stat-icon--red">
+              <i class="bi bi-x-circle-fill"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="veiculosAlugados">1</span>
+              <span class="stat-label">Veículos alugados</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Atividade recente -->
+    <section class="container-fluid px-4 mt-4">
+      <div class="row g-3">
+
+        <!-- Últimos clientes -->
+        <div class="col-lg-6">
+          <div class="card-section">
+            <div class="card-section-header">
+              <h5><i class="bi bi-people"></i> Últimos Clientes</h5>
+              <a href="listagem-clientes.html" class="btn-link-accent">Ver todos</a>
+            </div>
+            <table class="table-mini">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>CPF</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="tabelaClientes"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Últimos veículos -->
+        <div class="col-lg-6">
+          <div class="card-section">
+            <div class="card-section-header">
+              <h5><i class="bi bi-car-front"></i> Últimos Veículos</h5>
+              <a href="listagem-veiculos.html" class="btn-link-accent">Ver todos</a>
+            </div>
+            <table class="table-mini">
+              <thead>
+                <tr>
+                  <th>Modelo</th>
+                  <th>Placa</th>
+                  <th>Disponível</th>
+                </tr>
+              </thead>
+              <tbody id="tabelaVeiculos"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <footer class="footer">
+      <small>&copy; 2026 UniCar — Programação para Web · UNISAPIENS</small>
+    </footer>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/clientes.js"></script>
+  <script src="assets/js/veiculos.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById('totalClientes').textContent = clientes.length;
+    document.getElementById('totalVeiculos').textContent = veiculos.length;
+    const disponiveis = veiculos.filter(v => v.disponivel).length;
+    document.getElementById('veiculosDisponiveis').textContent = disponiveis;
+    document.getElementById('veiculosAlugados').textContent = veiculos.length - disponiveis;
+
+    const tbClientes = document.getElementById('tabelaClientes');
+    clientes.slice(0, 3).forEach(c => {
+      tbClientes.innerHTML += `
+        <tr>
+          <td>${c.nome}</td>
+          <td>${c.cpf}</td>
+          <td><span class="badge-status badge-ativo">Ativo</span></td>
+        </tr>`;
+    });
+
+    const tbVeiculos = document.getElementById('tabelaVeiculos');
+    veiculos.slice(0, 3).forEach(v => {
+      tbVeiculos.innerHTML += `
+        <tr>
+          <td>${v.modelo}</td>
+          <td>${v.placa}</td>
+          <td>${v.disponivel
+            ? '<span class="badge-status badge-ativo">Sim</span>'
+            : '<span class="badge-status badge-inativo">Não</span>'}</td>
+        </tr>`;
+    });
+  </script>
+
+</body>
+</html>

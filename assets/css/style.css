@@ -1,0 +1,402 @@
+/* ========================================
+   Variáveis — Paleta UniCar
+======================================== */
+:root {
+  --primary:        #D32F2F;
+  --primary-dark:   #9A0007;
+  --primary-light:  #FF6659;
+
+  --success:        #2E7D32;
+  --warning:        #F57C00;
+  --error:          #C62828;
+
+  --bg:             #F8F9FA;
+  --card-bg:        #FFFFFF;
+  --text:           #212121;
+  --text-secondary: #666666;
+  --border:         #E0E0E0;
+
+  --sidebar-w:      240px;
+}
+
+/* ========================================
+   Reset / Base
+======================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ========================================
+   Sidebar
+======================================== */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  background: var(--primary-dark);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  transition: transform .25s ease;
+  overflow-y: auto;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+
+.sidebar-brand img {
+  height: 36px;
+  object-fit: contain;
+}
+
+.sidebar-brand span {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: .5px;
+}
+
+.sidebar-nav {
+  padding: 16px 0;
+  flex: 1;
+}
+
+.sidebar-label {
+  font-size: .68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,.45);
+  padding: 14px 20px 4px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  color: rgba(255,255,255,.8);
+  text-decoration: none;
+  font-size: .9rem;
+  transition: background .15s, color .15s;
+}
+
+.sidebar-link i { font-size: 1rem; }
+
+.sidebar-link:hover {
+  background: rgba(255,255,255,.08);
+  color: #fff;
+}
+
+.sidebar-link.active {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ========================================
+   Overlay mobile
+======================================== */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 999;
+}
+
+/* ========================================
+   Main content
+======================================== */
+.main-content {
+  margin-left: var(--sidebar-w);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: margin .25s ease;
+}
+
+/* ========================================
+   Topbar
+======================================== */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 24px;
+  height: 60px;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.btn-toggle-sidebar {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--text);
+  cursor: pointer;
+  display: none;
+  line-height: 1;
+}
+
+.topbar-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  flex: 1;
+}
+
+.topbar-user {
+  font-size: .875rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ========================================
+   Hero
+======================================== */
+.hero {
+  background: linear-gradient(135deg, rgba(154,0,7,.85) 0%, rgba(211,47,47,.8) 100%),
+              url('../img/banner.png') center/cover no-repeat;
+  padding: 48px 32px;
+  color: #fff;
+}
+
+.hero-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  margin-top: 8px;
+  font-size: 1rem;
+  color: rgba(255,255,255,.8);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.btn-accent {
+  background: #fff;
+  color: var(--primary);
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: .9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background .15s;
+}
+
+.btn-accent:hover { background: var(--bg); color: var(--primary-dark); }
+
+.btn-outline-light {
+  border: 1.5px solid rgba(255,255,255,.7);
+  color: #fff;
+  background: transparent;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: .9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background .15s;
+}
+
+.btn-outline-light:hover { background: rgba(255,255,255,.12); color: #fff; }
+
+/* ========================================
+   Cards de estatística
+======================================== */
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.stat-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.stat-icon--blue  { background: #E3F2FD; color: #1565C0; }
+.stat-icon--orange{ background: #FFF3E0; color: var(--warning); }
+.stat-icon--green { background: #E8F5E9; color: var(--success); }
+.stat-icon--red   { background: #FFEBEE; color: var(--primary); }
+
+.stat-info { display: flex; flex-direction: column; }
+
+.stat-value {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text);
+}
+
+.stat-label {
+  font-size: .8rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* ========================================
+   Card de seção (tabelas recentes)
+======================================== */
+.card-section {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-section-header h5 {
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.btn-link-accent {
+  font-size: .8rem;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.btn-link-accent:hover { color: var(--primary-dark); text-decoration: underline; }
+
+/* ========================================
+   Tabela mini
+======================================== */
+.table-mini {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .875rem;
+}
+
+.table-mini thead th {
+  padding: 10px 20px;
+  text-align: left;
+  font-size: .75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.table-mini tbody td {
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.table-mini tbody tr:last-child td { border-bottom: none; }
+
+.table-mini tbody tr:hover { background: var(--bg); }
+
+/* ========================================
+   Badges de status
+======================================== */
+.badge-status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: .75rem;
+  font-weight: 600;
+}
+
+.badge-ativo   { background: #E8F5E9; color: var(--success); }
+.badge-inativo { background: #FFEBEE; color: var(--error); }
+.badge-aviso   { background: #FFF3E0; color: var(--warning); }
+
+/* ========================================
+   Footer
+======================================== */
+.footer {
+  margin-top: auto;
+  padding: 20px 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: .8rem;
+}
+
+/* ========================================
+   Responsividade
+======================================== */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-overlay.open {
+    display: block;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .btn-toggle-sidebar {
+    display: block;
+  }
+
+  .hero { padding: 32px 20px; }
+  .hero-title { font-size: 1.8rem; }
+}
