@@ -19,6 +19,10 @@
   --sidebar-w:      240px;
 }
 
+:root {
+  --sidebar-w-collapsed: 64px;
+}
+
 /* ========================================
    Reset / Base
 ======================================== */
@@ -62,6 +66,32 @@ body {
   object-fit: contain;
 }
 
+/* Botão de recolher */
+.sidebar-collapse-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,.3);
+  background: rgba(255,255,255,.1);
+  color: #fff;
+  cursor: pointer;
+  position: absolute;
+  top: 68px;
+  right: -14px;
+  z-index: 10;
+  transition: background .15s, transform .25s;
+}
+
+.sidebar-collapse-btn:hover { background: var(--primary); border-color: var(--primary); }
+
+.sidebar.collapsed .sidebar-collapse-btn {
+  transform: rotate(180deg);
+  right: -14px;
+}
+
 .sidebar-nav {
   padding: 16px 0;
   flex: 1;
@@ -74,6 +104,9 @@ body {
   letter-spacing: 1px;
   color: rgba(255,255,255,.45);
   padding: 14px 20px 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: opacity .2s, padding .25s;
 }
 
 .sidebar-link {
@@ -84,10 +117,17 @@ body {
   color: rgba(255,255,255,.8);
   text-decoration: none;
   font-size: .9rem;
-  transition: background .15s, color .15s;
+  transition: background .15s, color .15s, padding .25s;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-.sidebar-link i { font-size: 1rem; }
+.sidebar-link i {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.sidebar-link span { transition: opacity .2s; }
 
 .sidebar-link:hover {
   background: rgba(255,255,255,.08);
@@ -98,6 +138,33 @@ body {
   background: var(--primary);
   color: #fff;
   font-weight: 600;
+}
+
+/* ---- Estado recolhido ---- */
+.sidebar.collapsed {
+  width: var(--sidebar-w-collapsed);
+}
+
+.sidebar.collapsed .sidebar-logo { display: none; }
+
+.sidebar.collapsed .sidebar-label {
+  opacity: 0;
+  padding-top: 4px;
+  padding-bottom: 0;
+  font-size: 0;
+}
+
+.sidebar.collapsed .sidebar-link {
+  padding: 12px 0;
+  justify-content: center;
+  gap: 0;
+}
+
+.sidebar.collapsed .sidebar-link span { display: none; }
+
+.sidebar.collapsed + .sidebar-overlay + .main-content,
+.sidebar.collapsed ~ .main-content {
+  margin-left: var(--sidebar-w-collapsed);
 }
 
 /* ========================================
